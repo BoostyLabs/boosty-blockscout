@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   frontend:
-    image: ghcr.io/blockscout/frontend:${FRONTEND_DOCKER_TAG:-latest}
+    image: 957691576938.dkr.ecr.us-east-2.amazonaws.com/frontend-blockscout:latest
     pull_policy: always
     platform: linux/amd64
     restart: always
