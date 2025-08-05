@@ -79,7 +79,7 @@ jobs:
             cd blockscout/docker-compose
             ###git checkout ${{ inputs.environment }}
             ###git pull origin ${{ inputs.environment }}
-            
+            docker-compose pull
             docker-compose up -d
             docker-compose restart        
    
