@@ -57,8 +57,9 @@ jobs:
 
         - name: Build Docker image
           run: |
-            cd apps && docker build -t ${{ env.ECR_URL_FRONT }}:latest -f Dockerfile.front .
-            cd apps && docker build -t ${{ env.ECR_URL_BACK }}:latest -f Dockerfile.back .
+            cd apps
+            docker build -t ${{ env.ECR_URL_FRONT }}:latest -f Dockerfile.front .
+            docker build -t ${{ env.ECR_URL_BACK }}:latest -f Dockerfile.back .
 
         - name: Push Docker image
           run: |
