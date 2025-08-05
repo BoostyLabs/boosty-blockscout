@@ -31,7 +31,7 @@ env:
     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_ECR }}
     AWS_REGION: ${{ secrets.AWS_REGION }}
 
-    ECR_URL: ${{ vars.ECR_URL }}
+    ECR_URL_FRONT: ${{ vars.ECR_URL_FRONT }}
     ECR_URL_BACK: ${{ vars.ECR_URL_BACK }}
     SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
     VM_IP: ${{ vars.VM_IP }}
@@ -57,12 +57,12 @@ jobs:
 
         - name: Build Docker image
           run: |
-            docker build -t ${{ env.ECR_URL }}:latest .
-            docker build -t ${{ env.ECR_URL_BACK }}:latest .
+            cd apps && docker build -t ${{ env.ECR_URL_FRONT }}:latest -f Dockerfile.front .
+            cd apps && docker build -t ${{ env.ECR_URL_BACK }}:latest -f Dockerfile.back .
 
         - name: Push Docker image
           run: |
-            docker push ${{ env.ECR_URL }}:latest
+            docker push ${{ env.ECR_URL_FRONT }}:latest
             docker push ${{ env.ECR_URL_BACK }}:latest
             
             
